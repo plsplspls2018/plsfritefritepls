@@ -35,16 +35,7 @@ public class Snorkunking  {
 	
 	
 	
-	
 
-
-    public static void main(String[] args) {
-    		Snorkunking ma = new Snorkunking();
-    		ma.dispMenu();
-    		
-    	
-    }
-    
     
     public void setGererPartie(GererPartie jjjeu) {
     		this.jeu = jjjeu;
