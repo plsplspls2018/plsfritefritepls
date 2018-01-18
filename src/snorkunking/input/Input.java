@@ -5,6 +5,7 @@ import snorkunking.moteurjeu.Plongeur;
 
 public abstract class Input {
 
+	Enum
 	public static String actionMonter="monter";
 	public static String actionDescendre="descendre";
 	public static String actionRecuperer="recuperer";

@@ -33,7 +33,7 @@ public class Phase {
     private void finirPhase() {
         for(Plongeur p: partie.getPlongeurs())
             if(p.EstDansLEau())
-                return; //todo
+                p.seFaireBaiser();
 
 
         partie.phaseFinie();

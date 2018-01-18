@@ -1,15 +1,11 @@
 package snorkunking.moteurjeu;
 
+import snorkunking.input.Input;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Plongeur {
-
-    private Oxygene bouteille;
-    private int idCaveActuelle;
-    private int profondeurPropreCaveActuelle;
-    private Score scoreCommun;
-    private List<Cave> caves;
 
     private final String nom;
     private final Partie partie;
@@ -17,10 +13,12 @@ public class Plongeur {
     private int nombreTresors = 0;
     private int niveauActuel = 0;
     private int profondeurActuelle = -1;
+    private Input input;
 
-    public Plongeur(Partie partie, String nom) {
+    public Plongeur(Partie partie, String nom, Input input) {
         this.partie = partie;
         this.nom = nom;
+        this.input = input;
     }
 
 
@@ -29,9 +27,30 @@ public class Plongeur {
     }
 
 
+    public void seFaireBaiser() {
+        niveauActuel = 0;
+        profondeurActuelle = -1;
+        partie.faireTomberCoffres(coffresSurSoi);
+        coffresSurSoi.clear();
+    }
+
+    public void jouer() {
+        boolean aFaitAction;
+        do {
+            String action = input.prochaineAction();
+            if(action == Input.actionMonter)
+                aFaitAction = monter();
+            else if(action == Input.actionDescendre)
+                aFaitAction = descendre();
+            else if(action == Input.actionDescendre)
+                aFaitAction = recupererCoffre();
+            else
+                throw new RuntimeException("Action invalide: "+action);
+        } while (aFaitAction);
+    }
+
+
     /** Chaque action retourne false si son execution est impossible et n'as pas ete faite**/
-
-
 
     public boolean monter() {
         if(EstDansLEau())
@@ -70,20 +89,36 @@ public class Plongeur {
 
 
     public boolean recupererCoffre() {
-        Cave caveActuelle = this.caves.get(this.idCaveActuelle);
-        Coffre coffreDeCeNiveau = caveActuelle.getCoffre(this.profondeurPropreCaveActuelle);
-        if (coffreDeCeNiveau.prendreTresors() == true) {
-            int tresorsPris = coffreDeCeNiveau.getNbTresors();
-            this.scoreCommun.compterTresorsPris(this, tresorsPris);
-            return true;
-        } else {
+        if(EstDansLEau())
+            return false;
+
+        try {
+            coffresSurSoi.add(getCave().prendreCoffre(niveauActuel));
+        } catch (IllegalStateException e) {
             return false;
         }
+
+        partie.getPhase().consomerOxygene(1);
+        return true;
     }
 
     /**Attention, ne marche que si on est dans l'eau => il faut toujours tester avant*/
     private Cave getCave() {
         return partie.getCaves().get(profondeurActuelle);
+    }
+
+    public boolean estPlusProfondQue(Plongeur autre) {
+        if(this.profondeurActuelle == autre.profondeurActuelle) {
+            if(this.niveauActuel == autre.niveauActuel)
+                return this.nom.compareTo(autre.nom) > 0;
+            return this.niveauActuel > autre.niveauActuel;
+        }
+
+        return this.profondeurActuelle > autre.profondeurActuelle;
+    }
+
+    public String getNom() {
+        return nom;
     }
 
 
