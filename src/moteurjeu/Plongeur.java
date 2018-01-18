@@ -40,9 +40,9 @@ public class Plongeur {
         //monte d'une cave
         if(niveauActuel == 0) {
             profondeurActuelle--;
-            niveauActuel = 0;
+            niveauActuel = EstDansLEau()? getCave().getNbNiveaux()-1 : 0;
         } else {
-            niveauActuel++;
+            niveauActuel--;
         }
 
         partie.getPhase().consomerOxygene(1+coffresSurSoi.size());
