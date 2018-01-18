@@ -1,4 +1,4 @@
-package moteurjeu;
+package snorkunking.moteurjeu;
 
 import java.util.HashMap;
 

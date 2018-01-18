@@ -1,4 +1,9 @@
-package moteurjeu;
+package snorkunking.input;
+
+import snorkunking.moteurjeu.Coffre;
+import snorkunking.moteurjeu.GererPartie;
+import snorkunking.moteurjeu.Plongeur;
+import snorkunking.moteurjeu.Score;
 
 public class IA extends Input{
 	

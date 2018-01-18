@@ -1,7 +1,9 @@
-package moteurjeu;
+package snorkunking.input;
 
 
-import graphique.StdDraw;
+import snorkunking.graphique.StdDraw;
+import snorkunking.moteurjeu.GererPartie;
+import snorkunking.moteurjeu.Plongeur;
 
 public class InputJoueur extends Input {
 	

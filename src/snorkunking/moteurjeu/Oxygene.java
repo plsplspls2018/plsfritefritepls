@@ -1,4 +1,4 @@
-package moteurjeu;
+package snorkunking.moteurjeu;
 
 public class Oxygene {
 	

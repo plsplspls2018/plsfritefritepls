@@ -1,14 +1,11 @@
-package graphique;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+package snorkunking.graphique;
 import java.util.List;
 
-import moteurjeu.GererPartie;
-import moteurjeu.IA;
-import moteurjeu.Input;
-import moteurjeu.InputJoueur;
-import moteurjeu.Plongeur;
+import snorkunking.moteurjeu.GererPartie;
+import snorkunking.input.IA;
+import snorkunking.input.Input;
+import snorkunking.input.InputJoueur;
+import snorkunking.moteurjeu.Plongeur;
 
 
 public class Snorkunking  {
@@ -97,7 +94,7 @@ public class Snorkunking  {
     		
     		for(int i=0; i<nbStrates;i++) {
     			double yStrate= yPremiereStrate - i*hauteurStrate;
-    			List<moteurjeu.Plongeur> plongeursARepresenter = this.jeu.getPlongeurPour(idCave, i );	
+    			List<snorkunking.moteurjeu.Plongeur> plongeursARepresenter = this.jeu.getPlongeurPour(idCave, i );
     			boolean aCoffre = this.jeu.aCoffrePour(idCave, i );
     			this.dessinerStrate(yStrate, hauteurStrate, plongeursARepresenter, aCoffre);
     			
@@ -105,7 +102,7 @@ public class Snorkunking  {
     	
     }
     
-    private void dessinerStrate(double yStrate, double hauteurStrate, List<moteurjeu.Plongeur> plongeursARepresenter, boolean aCoffre) {
+    private void dessinerStrate(double yStrate, double hauteurStrate, List<snorkunking.moteurjeu.Plongeur> plongeursARepresenter, boolean aCoffre) {
     	
 		if(plongeursARepresenter.isEmpty()) {
 			StdDraw.rectangle(xNul, yStrate,largeurstrate, hauteurStrate/2);

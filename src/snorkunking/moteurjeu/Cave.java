@@ -1,4 +1,6 @@
-package moteurjeu;
+package snorkunking.moteurjeu;
+import snorkunking.Main;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,11 +12,11 @@ public class Cave {
 	public Cave(int profondeur) {
 	    int nbNiveaux;
         if(profondeur == 0)
-            nbNiveaux = Utilitaires.RandomInt(9, 12);
+            nbNiveaux = Main.RandomInt(9, 12);
         else if(profondeur == 1)
-            nbNiveaux = Utilitaires.RandomInt(6, 19);
+            nbNiveaux = Main.RandomInt(6, 19);
         else if(profondeur == 2)
-            nbNiveaux = Utilitaires.RandomInt(3, 6);
+            nbNiveaux = Main.RandomInt(3, 6);
         else
             throw new RuntimeException("profondeur cave doit être entre 1 et 3 et non "+ profondeur);
 

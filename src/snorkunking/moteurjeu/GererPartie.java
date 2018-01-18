@@ -1,4 +1,6 @@
-package moteurjeu;
+package snorkunking.moteurjeu;
+
+import snorkunking.input.Input;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +74,7 @@ public class GererPartie {
 		
 		Plongeur bonPlongeur = this.plongeurDontCEstLeTour;
 		
-		if (nomAction==Input.actionMonter) {
+		if (nomAction== Input.actionMonter) {
 			bonPlongeur.monter();
 		}else if (nomAction==Input.actionDescendre) {
 			bonPlongeur.descendre();

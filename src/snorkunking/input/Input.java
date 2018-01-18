@@ -1,4 +1,7 @@
-package moteurjeu;
+package snorkunking.input;
+
+import snorkunking.moteurjeu.GererPartie;
+import snorkunking.moteurjeu.Plongeur;
 
 public abstract class Input {
 

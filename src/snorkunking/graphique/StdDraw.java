@@ -1,4 +1,4 @@
-package graphique;
+package snorkunking.graphique;
 
 
 	/******************************************************************************
@@ -92,7 +92,7 @@ package graphique;
 	 *  Now, type the following short program into your editor:
 	 *  <pre>
 	 *   public class TestStdDraw {
-	 *       public static void main(String[] args) {
+	 *       public static void snorkunking(String[] args) {
 	 *           StdDraw.setPenRadius(0.05);
 	 *           StdDraw.setPenColor(StdDraw.BLUE);
 	 *           StdDraw.point(0.5, 0.5);
@@ -103,7 +103,7 @@ package graphique;
 	 *  </pre>
 	 *  If you compile and execute the program, you should see a window
 	 *  appear with a thick magenta line and a blue point.
-	 *  This program illustrates the two main types of methods in standard
+	 *  This program illustrates the two snorkunking types of methods in standard
 	 *  drawing—methods that draw geometric shapes and methods that
 	 *  control drawing parameters.
 	 *  The methods {@code StdDraw.line()} and {@code StdDraw.point()}

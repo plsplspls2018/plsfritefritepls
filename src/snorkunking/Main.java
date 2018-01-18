@@ -1,8 +1,16 @@
-package moteurjeu;
+package snorkunking;
+
+import snorkunking.graphique.Snorkunking;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Utilitaires {
+public class Main {
+
+    public static void main(String[] args) {
+        Snorkunking ma = new Snorkunking();
+        ma.dispMenu();
+
+    }
 
     public static int RandomInt(int max) {
         return RandomInt(0, max);

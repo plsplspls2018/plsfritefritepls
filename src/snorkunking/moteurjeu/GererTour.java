@@ -1,4 +1,4 @@
-package moteurjeu;
+package snorkunking.moteurjeu;
 
 import java.util.ArrayList;
 import java.util.List;

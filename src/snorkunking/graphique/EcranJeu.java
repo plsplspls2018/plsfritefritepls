@@ -1,4 +1,4 @@
-package graphique;
+package snorkunking.graphique;
 
 public class EcranJeu {
 
