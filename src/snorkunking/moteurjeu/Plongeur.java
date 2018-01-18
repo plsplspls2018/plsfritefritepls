@@ -54,7 +54,7 @@ public class Plongeur {
      * Chaque action retourne false si son execution est impossible et n'as pas ete faite
      **/
 
-    public boolean monter() {
+    private boolean monter() {
         if (estDansLEau())
             return false;
 
@@ -75,7 +75,7 @@ public class Plongeur {
         return true;
     }
 
-    public boolean descendre() {
+    private boolean descendre() {
         if (partie.getCaves().size() == profondeurActuelle - 1)
             return false;
 
@@ -93,7 +93,7 @@ public class Plongeur {
     }
 
 
-    public boolean recupererCoffre() {
+    private boolean recupererCoffre() {
         if (estDansLEau())
             return false;
 

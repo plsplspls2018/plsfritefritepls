@@ -21,7 +21,7 @@ public class Main {
         List<Pair<String, Input>> joueurs = new ArrayList<>();
         joueurs.add(new Pair<>("Bob", new InputJoueur()));
         joueurs.add(new Pair<>("Alic", new InputIA()));
-        new Partie(joueurs);
+        new Partie(joueurs).lancer();
     }
 
     public static int RandomInt(int max) {
