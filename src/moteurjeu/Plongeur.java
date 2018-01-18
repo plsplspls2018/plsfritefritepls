@@ -4,90 +4,93 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Plongeur {
-	private Oxygene bouteille;
-	private int idCaveActuelle;
-	private int profondeurPropreCaveActuelle;
-	private boolean estDanslEau;
-	private Score scoreCommun;
-	private List<Cave> caves;
-	
-	public Plongeur(Score scoreCommun) {
-		this.scoreCommun= scoreCommun;
-	}
-	
-	
-	public void initNouveauTour(int capaciteBouteille, Cave cave0, Cave cave1, Cave cave2) {
-		this.bouteille = new Oxygene(capaciteBouteille);
-		idCaveActuelle=1;
-		profondeurPropreCaveActuelle=0;
-		this.estDanslEau=false;
-		this.caves = new ArrayList<Cave>();
-		caves.add(cave0);
-		caves.add(cave1);
-		caves.add(cave2);
-	}
-	
-	public boolean getEstDanslEau() {
-		return this.estDanslEau;
-	}
-	
-	public boolean monter() {
-		if (profondeurPropreCaveActuelle>0) {
-			profondeurPropreCaveActuelle--;
-			return true;
-		}
-		else if (idCaveActuelle>0) {
-			idCaveActuelle--;
-			profondeurPropreCaveActuelle=this.caves.get(idCaveActuelle).getNbNiveaux();
-			
-			return true;
-		}
-		else if(this.estDanslEau==true){
-			this.estDanslEau=false;
-			return true;
-		}else {
-			return false;
-		}
-		
-	}
-	
-	public boolean descendre() {
-		if(this.estDanslEau==false) {
-			this.estDanslEau=true;
-			idCaveActuelle=0;
-			profondeurPropreCaveActuelle=0;
-			return true;
-		}
-		if (profondeurPropreCaveActuelle<2) {
-		profondeurPropreCaveActuelle++;
-		return true;
-	}
-	else if (idCaveActuelle<2) {
-		idCaveActuelle++;
-		profondeurPropreCaveActuelle=this.caves.get(idCaveActuelle).getNbNiveaux()-1;
-		
-		return true;
-	}
-	else {
-		return false;
-		}
-	}
-	
-	public boolean recupererCoffre() {
-		Cave caveActuelle = this.caves.get(this.idCaveActuelle);
-		Coffre coffreDeCeNiveau=caveActuelle.getCoffre(this.profondeurPropreCaveActuelle);
-		if (coffreDeCeNiveau.prendreTresors()==true){
-			int tresorsPris = coffreDeCeNiveau.getNbTresors();
-			this.scoreCommun.compterTresorsPris(this, tresorsPris);
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	public double oxygenerestant() {
-		return bouteille.getPctageRestant();
-		}
+
+    private Oxygene bouteille;
+    private int idCaveActuelle;
+    private int profondeurPropreCaveActuelle;
+    private Score scoreCommun;
+    private List<Cave> caves;
+
+    private final String nom;
+    private final Partie partie;
+    private List<Coffre> coffresSurSoi = new ArrayList<>();
+    private int nombreTresors = 0;
+    private int niveauActuel = 0;
+    private int profondeurActuelle = -1;
+
+    public Plongeur(Partie partie, String nom) {
+        this.partie = partie;
+        this.nom = nom;
+    }
+
+
+    public boolean EstDansLEau() {
+        return profondeurActuelle > -1;
+    }
+
+
+    /** Chaque action retourne false si son execution est impossible et n'as pas ete faite**/
+
+
+
+    public boolean monter() {
+        if(EstDansLEau())
+            return false;
+
+        //monte d'une cave
+        if(niveauActuel == 0) {
+            profondeurActuelle--;
+            niveauActuel = 0;
+        } else {
+            niveauActuel++;
+        }
+
+        partie.getPhase().consomerOxygene(1+coffresSurSoi.size());
+
+        return true;
+    }
+
+    public boolean descendre() {
+        if(partie.getCaves().size() == profondeurActuelle-1)
+            return false;
+
+        //descend d'une cave
+        if(EstDansLEau() || getCave().getNbNiveaux() == niveauActuel-1) {
+            profondeurActuelle++;
+            niveauActuel = 0;
+        } else {
+            niveauActuel++;
+        }
+
+        partie.getPhase().consomerOxygene(1+coffresSurSoi.size());
+
+        return true;
+    }
+
+
+
+    public boolean recupererCoffre() {
+        Cave caveActuelle = this.caves.get(this.idCaveActuelle);
+        Coffre coffreDeCeNiveau = caveActuelle.getCoffre(this.profondeurPropreCaveActuelle);
+        if (coffreDeCeNiveau.prendreTresors() == true) {
+            int tresorsPris = coffreDeCeNiveau.getNbTresors();
+            this.scoreCommun.compterTresorsPris(this, tresorsPris);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**Attention, ne marche que si on est dans l'eau => il faut toujours tester avant*/
+    private Cave getCave() {
+        return partie.getCaves().get(profondeurActuelle);
+    }
+
+
+
+
+
+	/*
 	public int profondeurActuelle() {
 		int profondeur=0;
 		for (int i=0;i<this.idCaveActuelle;i++) {
@@ -99,14 +102,14 @@ public class Plongeur {
 			
 	}
 	public boolean assezOxygenePourRemonter() {
-		if (bouteille.getOxygeneRestant()>=((profondeurActuelle() )* (scoreCommun.getCoffresPour(this)+1)))  {
+		if (bouteille.getRestant()>=((profondeurActuelle() )* (scoreCommun.getCoffresPour(this)+1)))  {
 			return true;
 		}else {
 			return false;
 		}
 	}
 	public boolean assezOxygenePourRemonterPlus() {
-		if (bouteille.getOxygeneRestant()>=((profondeurActuelle() )* (scoreCommun.getCoffresPour(this)+2)))  {
+		if (bouteille.getRestant()>=((profondeurActuelle() )* (scoreCommun.getCoffresPour(this)+2)))  {
 			return true;
 		}else {
 			return false;
@@ -120,4 +123,5 @@ public class Plongeur {
 			return false;
 		}
 	}
+	*/
 }

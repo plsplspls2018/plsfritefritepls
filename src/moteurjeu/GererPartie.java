@@ -3,8 +3,6 @@ package moteurjeu;
 import java.util.ArrayList;
 import java.util.List;
 
-import graphique.Snorkunking;
-
 public class GererPartie {
 
 	GererTour tour1;

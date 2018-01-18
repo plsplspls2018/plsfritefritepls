@@ -1,77 +1,53 @@
 package moteurjeu;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 public class Cave {
-	
-	private int nbNiveau;
-	private int minTresor;
-	private int maxTresor;
-	private int minNv;
-	private int maxNv;
-	private int idCave;
-	private List<Coffre> coffres;
-	public Cave (int idCave) {
-	
-		this.idCave=idCave;
-		if (idCave==0){
-		minNv=9;
-		maxNv=12	;
-		minTresor=1;
-		maxTresor=3;
-				
-		}
-		else if (idCave==1) {
-			minNv=6;
-			maxNv=9;
-			minTresor=5;
-			maxTresor=8;
-			
-		}
-	
-		else {
-			minNv=3;
-			maxNv=6;
-			minTresor=9;
-			maxTresor=12;
-		}
-			
-	
-			
-		nbNiveau=minNv + (int)(Math.random() * ((maxNv - minNv) + 1));
 
-		System.out.println("instanciateur");
-		System.out.println(this.idCave);
-		System.out.println(nbNiveau);
-		
-		
-		coffres= new ArrayList<Coffre>(nbNiveau);
-		for (int i=0;i<nbNiveau;i++) {
+	private List<Integer> nbCoffreNiveau;
 
-			coffres.add(new Coffre(minTresor, maxTresor, idCave));
-		}
+
+	public Cave(int profondeur) {
+	    int nbNiveaux;
+        if(profondeur == 0)
+            nbNiveaux = Utilitaires.RandomInt(9, 12);
+        else if(profondeur == 1)
+            nbNiveaux = Utilitaires.RandomInt(6, 19);
+        else if(profondeur == 2)
+            nbNiveaux = Utilitaires.RandomInt(3, 6);
+        else
+            throw new RuntimeException("profondeur cave doit être entre 1 et 3 et non "+ profondeur);
+
+        nbCoffreNiveau = new ArrayList<>(nbNiveaux);
+        Collections.fill(nbCoffreNiveau, 1);
 
 	}
 	
 	public int getNbNiveaux() {
-
-		System.out.println("geteur");
-		System.out.println(this.idCave);
-		System.out.println(nbNiveau);
-		return this.nbNiveau;
-		
-	}
-	
-	public Coffre getCoffre(int profondeurCoffre) {
-		return this.coffres.get(profondeurCoffre);
+		return this.nbCoffreNiveau.size();
 	}
 
-	public boolean aCoffre(int profondeurPourCave) {
-		// TODO Auto-generated method stub
-		if (this.coffres.get(profondeurPourCave).estTresorPris()==true){
-			return false;
-		}
-		 else {
-			return true;
-		}
+	public Coffre prendreCoffre(int niveau) {
+	    int nbCoffres = nbCoffreNiveau.get(niveau);
+		if(nbCoffres > 0) {
+		    nbCoffreNiveau.set(niveau, nbCoffres-1);
+		    return new Coffre(niveau);
+        }
+		else
+		    return null;
 	}
-	}
+
+	public void mettreAJour() {
+	    int nbNiveaux = getNbNiveaux() - Collections.frequency(nbCoffreNiveau, 0);
+        nbCoffreNiveau = new ArrayList<>(nbNiveaux);
+        Collections.fill(nbCoffreNiveau, 1);
+    }
+
+    //useless
+    /*
+    public Coffre getCoffre(int profondeurCoffre) {
+        return this.coffres.get(profondeurCoffre);
+    }
+    */
+
+}

@@ -1,30 +1,43 @@
 package moteurjeu;
 
 public class Coffre {
-	private int nbTresors;
-	private boolean tresorsPris;
-	private int idCaveCoffre;
+
+    private int nbTresors;
 	
-	public Coffre(int minTresor, int maxTresor, int idCaveCoffre){
-		this.tresorsPris=false;
-		this.idCaveCoffre=idCaveCoffre;
-		nbTresors=minTresor + (int)(Math.random() * ((maxTresor - minTresor) + 1));
+	public Coffre(int profondeurCave){
+
+        if(profondeurCave == 0)
+            this.nbTresors = Utilitaires.RandomInt(1, 3);
+        else if(profondeurCave == 1)
+            this.nbTresors = Utilitaires.RandomInt(5, 8);
+        else if(profondeurCave == 2)
+            this.nbTresors = Utilitaires.RandomInt(10, 12);
+        else
+            throw new RuntimeException("profondeur cave doit être entre 1 et 3 et non "+ profondeurCave);
 	}
 	
 	public int getNbTresors()
 	{
 		return this.nbTresors;
 	}
-	
+
+
+	//useless?
+    /*
 	public boolean prendreTresors() {
-		if (this.tresorsPris=false){
-			tresorsPris=true;
-			return true;
-		}
-		else {
-			tresorsPris=false;
-			return false;
-		}
+
+	    //c'est pas bon ca non?
+//		if (!this.tresorsPris){
+//			tresorsPris=true;
+//			return true;
+//		} else {
+//			tresorsPris=false;
+//			return false;
+//		}
+
+		if(!tresorsPris)
+		    tresorsPris = true;
+		return this.tresorsPris;
 	}
 	
 	public int getIdCaveCoffre() {
@@ -33,4 +46,6 @@ public class Coffre {
 	public boolean estTresorPris() {
 		return this.tresorsPris;
 	}
+    */
+
 }
