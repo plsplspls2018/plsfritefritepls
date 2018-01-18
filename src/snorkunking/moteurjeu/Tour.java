@@ -12,20 +12,19 @@ public class Tour {
         this.phase = phase;
         this.plongeurs = new ArrayList<>(phase.getPartie().getPlongeurs());
         this.plongeurs.sort(new Comparator<Plongeur>() {
-            @Override // lorsque la profondeur est egale, le choix se fait par nom. Il est donc important que deux plongeurs n'ai pas le meme nom.
+            @Override
+            // lorsque la profondeur est egale, le choix se fait par nom. Il est donc important que deux plongeurs n'ai pas le meme nom.
             public int compare(Plongeur p1, Plongeur p2) {
-                return p1.estPlusProfondQue(p2)? -1 : 1;
+                return p1.estPlusProfondQue(p2) ? -1 : 1;
             }
         });
 
-        this.jouer();
     }
 
-    public void jouer() {
-        plongeurs.get(plongeurActuel).jouer();
+    public void lancer() {
+        for (Plongeur plongeur : plongeurs)
+            plongeur.jouer();
 
-        plongeurActuel++;
-        if(plongeurActuel > plongeurs.size())
-            phase.tourFini();
+        phase.tourFini();
     }
 }

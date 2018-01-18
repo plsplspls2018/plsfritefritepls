@@ -42,7 +42,7 @@ public class MenuAcceuil  {
 	       StdDraw.clear();
 	       StdDraw.setPenColor(StdDraw.BLUE);
 			StdDraw.filledRectangle(0, 0, 300, 300);
-		this.creerBouton(yJIA, "Joueur VS IA", null);
+		this.creerBouton(yJIA, "Joueur VS InputIA", null);
 		this.creerBouton(yJJ, "Joueur VS Joueur", null);
 		this.creerBouton(yQ, "Quitter", null);
 		
@@ -67,7 +67,7 @@ public class MenuAcceuil  {
 	
 	private void lancerJoueurVSia() {
 		// TODO Auto-generated method stub
-		EcranJeu jVSia = new EcranJeu("IA");
+		EcranJeu jVSia = new EcranJeu("InputIA");
 		jVSia.lancer();
 		
 	}

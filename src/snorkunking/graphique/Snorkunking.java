@@ -1,8 +1,8 @@
 package snorkunking.graphique;
 import java.util.List;
 
+import snorkunking.input.InputIA;
 import snorkunking.moteurjeu.GererPartie;
-import snorkunking.input.IA;
 import snorkunking.input.Input;
 import snorkunking.input.InputJoueur;
 import snorkunking.moteurjeu.Plongeur;
@@ -217,10 +217,10 @@ public class Snorkunking  {
 	
 	private void lancerJoueurVSia() {
 		// TODO Auto-generated method stub
-		EcranJeu jVSia = new EcranJeu("IA");
+		EcranJeu jVSia = new EcranJeu("InputIA");
 		
 		this.inputJoueur1=new InputJoueur(this.jeu, this.jeu.getPlongeurJoueur1());
-		this.inputJoueur2=new IA(this.jeu, this.jeu.getPlongeurJoueur2());
+		this.inputJoueur2=new InputIA(this.jeu, this.jeu.getPlongeurJoueur2());
 		
 		jVSia.lancer();
 		

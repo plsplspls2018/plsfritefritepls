@@ -22,7 +22,7 @@ public class Plongeur {
     }
 
 
-    public boolean EstDansLEau() {
+    public boolean estDansLEau() {
         return profondeurActuelle > -1;
     }
 
@@ -38,58 +38,63 @@ public class Plongeur {
         boolean aFaitAction;
         do {
             String action = input.prochaineAction();
-            if(action == Input.actionMonter)
+            if (action == Input.actionMonter)
                 aFaitAction = monter();
-            else if(action == Input.actionDescendre)
+            else if (action == Input.actionDescendre)
                 aFaitAction = descendre();
-            else if(action == Input.actionDescendre)
+            else if (action == Input.actionDescendre)
                 aFaitAction = recupererCoffre();
             else
-                throw new RuntimeException("Action invalide: "+action);
+                throw new RuntimeException("Action invalide: " + action);
         } while (aFaitAction);
     }
 
 
-    /** Chaque action retourne false si son execution est impossible et n'as pas ete faite**/
+    /**
+     * Chaque action retourne false si son execution est impossible et n'as pas ete faite
+     **/
 
     public boolean monter() {
-        if(EstDansLEau())
+        if (estDansLEau())
             return false;
 
         //monte d'une cave
-        if(niveauActuel == 0) {
+        if (niveauActuel == 0) {
             profondeurActuelle--;
-            niveauActuel = EstDansLEau()? getCave().getNbNiveaux()-1 : 0;
+            if (estDansLEau())
+                niveauActuel = getCave().getNbNiveaux() - 1;
+            else
+                ouvrirCoffres();
+
         } else {
             niveauActuel--;
         }
 
-        partie.getPhase().consomerOxygene(1+coffresSurSoi.size());
+        partie.getPhase().consomerOxygene(1 + coffresSurSoi.size());
 
         return true;
     }
 
     public boolean descendre() {
-        if(partie.getCaves().size() == profondeurActuelle-1)
+        if (partie.getCaves().size() == profondeurActuelle - 1)
             return false;
 
         //descend d'une cave
-        if(EstDansLEau() || getCave().getNbNiveaux() == niveauActuel-1) {
+        if (estDansLEau() || getCave().getNbNiveaux() == niveauActuel - 1) {
             profondeurActuelle++;
             niveauActuel = 0;
         } else {
             niveauActuel++;
         }
 
-        partie.getPhase().consomerOxygene(1+coffresSurSoi.size());
+        partie.getPhase().consomerOxygene(1 + coffresSurSoi.size());
 
         return true;
     }
 
 
-
     public boolean recupererCoffre() {
-        if(EstDansLEau())
+        if (estDansLEau())
             return false;
 
         try {
@@ -102,14 +107,26 @@ public class Plongeur {
         return true;
     }
 
-    /**Attention, ne marche que si on est dans l'eau => il faut toujours tester avant*/
+    /**
+     * Attention, ne marche que si on est dans l'eau => il faut toujours tester avant
+     */
     private Cave getCave() {
         return partie.getCaves().get(profondeurActuelle);
     }
 
+    private void ouvrirCoffres() {
+        for (Coffre coffre : coffresSurSoi)
+            nombreTresors += coffre.getNbTresors();
+        coffresSurSoi.clear();
+    }
+
+    public int getNombreTresors() {
+        return nombreTresors;
+    }
+
     public boolean estPlusProfondQue(Plongeur autre) {
-        if(this.profondeurActuelle == autre.profondeurActuelle) {
-            if(this.niveauActuel == autre.niveauActuel)
+        if (this.profondeurActuelle == autre.profondeurActuelle) {
+            if (this.niveauActuel == autre.niveauActuel)
                 return this.nom.compareTo(autre.nom) > 0;
             return this.niveauActuel > autre.niveauActuel;
         }

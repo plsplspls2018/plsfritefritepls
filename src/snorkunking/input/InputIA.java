@@ -5,13 +5,12 @@ import snorkunking.moteurjeu.GererPartie;
 import snorkunking.moteurjeu.Plongeur;
 import snorkunking.moteurjeu.Score;
 
-public class IA extends Input{
+public class InputIA extends Input{
 	
 	private Score score;
 	private Coffre coffre ;
 	
-	public IA(GererPartie jeu, Plongeur p) {
-		super(jeu, p);
+	public InputIA() {
 	}
 	
 	public double evaluerGainMonter() {

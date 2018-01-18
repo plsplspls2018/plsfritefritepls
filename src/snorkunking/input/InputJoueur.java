@@ -11,8 +11,7 @@ public class InputJoueur extends Input {
 	private String actionPrevue;
 
 
-	public InputJoueur(GererPartie jeu, Plongeur p) {
-		super(jeu, p);
+	public InputJoueur() {
 		this.accepteInput=false;
 		this.actionPrevue=null;
 	}
