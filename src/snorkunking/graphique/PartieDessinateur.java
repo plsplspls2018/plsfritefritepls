@@ -6,21 +6,23 @@ import snorkunking.moteurjeu.Plongeur;
 
 public class PartieDessinateur {
 
-    public void dessiner(Partie partie) {
+    public static Partie partieEnCours;
+
+    public static void dessiner() {
 
 
-        for (int profondeur = 0; profondeur < partie.getCaves().size(); profondeur++)
-            dessinerCave(partie.getCaves().get(profondeur), profondeur);
+        for (int profondeur = 0; profondeur < partieEnCours.getCaves().size(); profondeur++)
+            dessinerCave(partieEnCours.getCaves().get(profondeur), profondeur);
 
-        dessinerOxygene(partie.getPhase().getOxygeneRestant());
+        dessinerOxygene(partieEnCours.getPhase().getOxygeneRestant());
 
-        for (Plongeur plongeur : partie.getPlongeurs())
+        for (Plongeur plongeur : partieEnCours.getPlongeurs())
             dessinerPlongeur(plongeur);
 
     }
 
 
-    private void dessinerPlongeur(Plongeur plongeur) {
+    private static void dessinerPlongeur(Plongeur plongeur) {
 
         plongeur.getNombreTresors(); //score a afficher, eventuellement a cote du nom
         plongeur.getNom();
@@ -38,11 +40,11 @@ public class PartieDessinateur {
 
     }
 
-    private void dessinerOxygene(int oxygeneRestant) {
+    private static void dessinerOxygene(int oxygeneRestant) {
         //oxygeneRestant a afficher
     }
 
-    private void dessinerCave(Cave cave, int profondeur) {
+    private static void dessinerCave(Cave cave, int profondeur) {
         //affiche le fond caveX.png, avec X = profondeur
 
         for (int niveau = 0; niveau < cave.getNbNiveaux(); niveau++) { // (pour chaque niveau)

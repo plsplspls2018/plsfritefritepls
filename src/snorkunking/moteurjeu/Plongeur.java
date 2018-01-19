@@ -1,5 +1,6 @@
 package snorkunking.moteurjeu;
 
+import snorkunking.graphique.PartieDessinateur;
 import snorkunking.input.Input;
 
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ public class Plongeur {
     }
 
     public void jouer() {
+
+        PartieDessinateur.dessiner();
         boolean aFaitAction;
         do {
             String action = input.prochaineAction(partie);

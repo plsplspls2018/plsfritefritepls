@@ -2,6 +2,7 @@ package snorkunking.moteurjeu;
 
 
 import javafx.util.Pair;
+import snorkunking.graphique.PartieDessinateur;
 import snorkunking.input.Input;
 
 import java.util.*;
@@ -22,6 +23,8 @@ public class Partie {
             caves.set(i, new Cave(i));
 
         this.phaseActuelle = new Phase(this);
+
+        PartieDessinateur.partieEnCours = this;
     }
 
     public void lancer() {
@@ -39,7 +42,7 @@ public class Partie {
             cave.mettreAJourNiveaux();
 
         this.phaseActuelle = new Phase(this);
-        lancer();
+        phaseActuelle.lancer();
     }
 
     public void augmenterScore(Plongeur j, int score) {
