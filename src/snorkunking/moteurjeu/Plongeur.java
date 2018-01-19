@@ -37,7 +37,7 @@ public class Plongeur {
     public void jouer() {
         boolean aFaitAction;
         do {
-            String action = input.prochaineAction();
+            String action = input.prochaineAction(partie);
             if (action == Input.actionMonter)
                 aFaitAction = monter();
             else if (action == Input.actionDescendre)

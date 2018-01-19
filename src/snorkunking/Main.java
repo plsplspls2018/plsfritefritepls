@@ -1,9 +1,7 @@
 package snorkunking;
 
 import javafx.util.Pair;
-import snorkunking.graphique.Snorkunking;
 import snorkunking.input.Input;
-import snorkunking.input.InputIA;
 import snorkunking.input.InputJoueur;
 import snorkunking.moteurjeu.Partie;
 
@@ -20,7 +18,7 @@ public class Main {
         */
         List<Pair<String, Input>> joueurs = new ArrayList<>();
         joueurs.add(new Pair<>("Bob", new InputJoueur()));
-        joueurs.add(new Pair<>("Alic", new InputIA()));
+        joueurs.add(new Pair<>("Alice", new InputJoueur()));
         new Partie(joueurs).lancer();
     }
 

@@ -3,17 +3,16 @@ package snorkunking.moteurjeu;
 public class Phase {
 
     private final Partie partie;
-    private final Oxygene oxygene;
+    private int oxygeneRestant;
     private Tour tourActuel;
 
 
     public Phase(Partie partie) {
         this.partie = partie;
 
-        int maxOxygen = 0;
+        oxygeneRestant = 0;
         for (Cave cave : partie.getCaves())
-            maxOxygen += 2 * cave.getNbNiveaux();
-        this.oxygene = new Oxygene(maxOxygen);
+            oxygeneRestant += 2 * cave.getNbNiveaux();
 
         this.tourActuel = new Tour(this);
     }
@@ -23,9 +22,11 @@ public class Phase {
     }
 
     public void consomerOxygene(int nombre) {
-        oxygene.consommer(nombre);
-        if (oxygene.getRestant() == 0)
+        oxygeneRestant -= nombre;
+        if (oxygeneRestant <= 0) {
+            oxygeneRestant = 0;
             finirPhase();
+        }
 
     }
 
@@ -42,6 +43,9 @@ public class Phase {
         partie.phaseFinie();
     }
 
+    public int getOxygeneRestant() {
+        return oxygeneRestant;
+    }
 
     public Partie getPartie() {
         return partie;

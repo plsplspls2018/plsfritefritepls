@@ -1,12 +1,14 @@
 package snorkunking.input;
 
-import snorkunking.moteurjeu.Coffre;
-import snorkunking.moteurjeu.GererPartie;
-import snorkunking.moteurjeu.Plongeur;
-import snorkunking.moteurjeu.Score;
+
+import snorkunking.moteurjeu.Partie;
 
 public class InputIA extends Input{
-	
+	@Override
+	public String prochaineAction(Partie partie) {
+		return null;
+	}
+	/*
 	private Score score;
 	private Coffre coffre ;
 	
@@ -65,6 +67,6 @@ public class InputIA extends Input{
 		
 		return this.actionMonter;
 	}
-	
+	*/
 
 }

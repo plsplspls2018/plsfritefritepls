@@ -1,15 +1,6 @@
 package snorkunking.graphique;
-import java.util.List;
-
-import snorkunking.input.InputIA;
-import snorkunking.moteurjeu.GererPartie;
-import snorkunking.input.Input;
-import snorkunking.input.InputJoueur;
-import snorkunking.moteurjeu.Plongeur;
-
-
 public class Snorkunking  {
-
+/*
 
 	private GererPartie jeu;
 	private SpritesPlongeurs spritesPlongeurs;
@@ -248,5 +239,5 @@ public class Snorkunking  {
 		}
 	}
 	
-
+*/
 }
