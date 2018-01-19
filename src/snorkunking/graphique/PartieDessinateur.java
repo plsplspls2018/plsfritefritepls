@@ -37,7 +37,7 @@ public class PartieDessinateur {
     private static void dessinerCave(Cave cave, int profondeur) {
         CaveDessinateur.dessinerSprite(profondeur);
 
-        double y = CaveDessinateur.YCave(profondeur) + CaveDessinateur.HauteurCave(profondeur)/2;
+        double y = CaveDessinateur.YCave(profondeur) + CaveDessinateur.HauteurCave(profondeur)/2 - CaveDessinateur.HauteurNiveau(profondeur)/2;
         for (int niveau = 0; niveau < cave.getNbNiveaux(); niveau++) { // (pour chaque niveau)
 
             StdDraw.rectangle(0, y  ,FenetreDessinateur.LARGEUR/2, CaveDessinateur.HauteurNiveau(profondeur)/2);
@@ -46,7 +46,7 @@ public class PartieDessinateur {
                 StdDraw.picture(i*CoffreDessinateur.COFFRE_LARGEUR, y, "image/coffre.png", CoffreDessinateur.COFFRE_LARGEUR, CoffreDessinateur.COFFRE_HAUTEUR);
             }
 
-            y += CaveDessinateur.HauteurNiveau(profondeur);
+            y -= CaveDessinateur.HauteurNiveau(profondeur);
         }
 
     }
