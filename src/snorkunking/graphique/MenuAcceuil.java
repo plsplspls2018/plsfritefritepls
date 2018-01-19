@@ -62,7 +62,7 @@ public class MenuAcceuil  {
 		
 	}
 
-
+/*
 
 	
 	private void lancerJoueurVSia() {
@@ -78,7 +78,7 @@ public class MenuAcceuil  {
 		EcranJeu jVSia = new EcranJeu("Joueur");
 		jVSia.lancer();
 	}
-
+*/
 	private boolean estDansBouton(double yBouton, double x, double y) {
 		if(x >= this.xBoutons - this.largeurBoutons/2 && x <= this.xBoutons - this.largeurBoutons/2 && 
 				y >= yBouton - this.hauteurBoutons/2 && y <= yBouton - this.hauteurBoutons/2 ) {
