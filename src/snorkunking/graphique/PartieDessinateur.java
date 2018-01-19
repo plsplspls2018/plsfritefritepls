@@ -31,7 +31,7 @@ public class PartieDessinateur {
     }
 
     private static void dessinerOxygene(int oxygeneRestant) {
-        StdDraw.text(0,270, "Oxygene restant: "+oxygeneRestant);
+        StdDraw.text(0,290, "Oxygene restant: "+oxygeneRestant);
     }
 
     private static void dessinerCave(Cave cave, int profondeur) {

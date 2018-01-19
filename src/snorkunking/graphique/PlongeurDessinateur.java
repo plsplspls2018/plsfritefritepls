@@ -12,11 +12,11 @@ public class PlongeurDessinateur {
     public static void dessinerSprite(Plongeur plongeur) {
         double y = 0;
         if(plongeur.estDansLEau()){
-            for (int profondeur = 0; profondeur < plongeur.getProfondeur(); profondeur++)
-                y += CaveDessinateur.HauteurCave(profondeur);
-            y += CaveDessinateur.HauteurNiveau(plongeur.getProfondeur());
+            int profondeur = plongeur.getProfondeur();
+            y = CaveDessinateur.YCave(profondeur) + CaveDessinateur.HauteurCave(profondeur)/2 - CaveDessinateur.HauteurNiveau(profondeur)/2;
+            y -= CaveDessinateur.HauteurNiveau(profondeur)*plongeur.getNiveau();
         } else {
-            y += CaveDessinateur.YCave(0) + PLONGEUR_HAUTEUR/2 + CaveDessinateur.YCave(0)/2;
+            y += CaveDessinateur.YCave(0) + PLONGEUR_HAUTEUR/2 + CaveDessinateur.HauteurCave(0)/2;
         }
 
         int x;
@@ -26,8 +26,8 @@ public class PlongeurDessinateur {
             x = -150;
 
         StdDraw.picture(x, y, "image/"+plongeur.getNom() + ".png", PLONGEUR_LARGEUR, PLONGEUR_HAUTEUR);
-        StdDraw.text(x, 250, "Score "+plongeur.getNom()+": "+plongeur.getNombreTresors());
-        StdDraw.text(x, 260, "Nb tresors "+plongeur.getNom()+": "+plongeur.getNbCoffresSurSoi());
+        StdDraw.text(x, 270, "Score "+plongeur.getNom()+": "+plongeur.getNombreTresors());
+        StdDraw.text(x, 280, "Nb tresors "+plongeur.getNom()+": "+plongeur.getNbCoffresSurSoi());
     }
 
 }
