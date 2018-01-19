@@ -58,7 +58,7 @@ public class Plongeur {
      **/
 
     private boolean monter() {
-        if (estDansLEau())
+        if (!estDansLEau())
             return false;
 
         //monte d'une cave
@@ -79,11 +79,11 @@ public class Plongeur {
     }
 
     private boolean descendre() {
-        if (partie.getCaves().size() == profondeurActuelle - 1)
+        if (partie.getCaves().size() -1 == profondeurActuelle)
             return false;
 
         //descend d'une cave
-        if (!estDansLEau() || getCave().getNbNiveaux() == niveauActuel - 1) {
+        if (!estDansLEau() || getCave().getNbNiveaux()-1 == niveauActuel ) {
             profondeurActuelle++;
             niveauActuel = 0;
         } else {
