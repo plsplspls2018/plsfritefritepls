@@ -26,8 +26,8 @@ public class PlongeurDessinateur {
             x = -150;
 
         StdDraw.picture(x, y, "image/"+plongeur.getNom() + ".png", PLONGEUR_LARGEUR, PLONGEUR_HAUTEUR);
-        StdDraw.text(x, 325, "Score "+plongeur.getNom()+": "+plongeur.getNombreTresors());
-        StdDraw.text(x, 300, "Nb tresors "+plongeur.getNom()+": "+plongeur.getNbCoffresSurSoi());
+        StdDraw.text(x, 250, "Score "+plongeur.getNom()+": "+plongeur.getNombreTresors());
+        StdDraw.text(x, 260, "Nb tresors "+plongeur.getNom()+": "+plongeur.getNbCoffresSurSoi());
     }
 
 }

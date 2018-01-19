@@ -30,16 +30,16 @@ public class PartieDessinateur {
     }
 
     private static void dessinerOxygene(int oxygeneRestant) {
-        StdDraw.text(0,350, "Oxygene restant: "+oxygeneRestant);
+        StdDraw.text(0,270, "Oxygene restant: "+oxygeneRestant);
     }
 
     private static void dessinerCave(Cave cave, int profondeur) {
         CaveDessinateur.dessinerSprite(profondeur);
 
-        double y = CaveDessinateur.YCave(profondeur) + CaveDessinateur.HauteurCave(profondeur);
+        double y = CaveDessinateur.YCave(profondeur) - CaveDessinateur.HauteurCave(profondeur)/2;
         for (int niveau = 0; niveau < cave.getNbNiveaux(); niveau++) { // (pour chaque niveau)
 
-            StdDraw.rectangle(0, CaveDessinateur.HauteurNiveau(profondeur)/2 + y,FenetreDessinateur.LARGEUR/2, CaveDessinateur.HauteurCave(profondeur)/2);
+            StdDraw.rectangle(0, y +CaveDessinateur.HauteurNiveau(profondeur)/2 ,FenetreDessinateur.LARGEUR/2, CaveDessinateur.HauteurCave(profondeur)/2);
             y += CaveDessinateur.HauteurNiveau(profondeur);
 
             for(int i=0; i<cave.getNbCoffres(niveau); i++) {

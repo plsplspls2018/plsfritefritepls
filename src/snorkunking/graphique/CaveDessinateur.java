@@ -18,9 +18,9 @@ public class CaveDessinateur {
         if(profondeur == 0)
             return 110;
         if(profondeur == 1)
-            return -90;
+            return YCave(0) - HauteurCave(0)/2 - HauteurCave(1)/2;
         if(profondeur == 2)
-            return -215;
+            return YCave(1) - HauteurCave(1)/2 - HauteurCave(2)/2;
 
         throw new RuntimeException("profondeur invalide");
     }
