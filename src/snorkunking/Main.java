@@ -17,8 +17,8 @@ public class Main {
         ma.dispMenu();
         */
         List<Pair<String, Input>> joueurs = new ArrayList<>();
-        joueurs.add(new Pair<>("Bob", new InputJoueur()));
-        joueurs.add(new Pair<>("Alice", new InputJoueur()));
+        joueurs.add(new Pair<>("plongeur1", new InputJoueur()));
+        joueurs.add(new Pair<>("plongeur2", new InputJoueur()));
         new Partie(joueurs).lancer();
     }
 

@@ -1,72 +1,48 @@
 package snorkunking.input;
 
 
+import snorkunking.moteurjeu.Cave;
 import snorkunking.moteurjeu.Partie;
+import snorkunking.moteurjeu.Plongeur;
 
 public class InputIA extends Input{
-	@Override
-	public String prochaineAction(Partie partie) {
-		return null;
-	}
-	/*
-	private Score score;
-	private Coffre coffre ;
-	
-	public InputIA() {
-	}
-	
-	public double evaluerGainMonter() {
-		return 0;
-	
-	}
-	public double evaluerGainDescendre() {
 
-		if(plongeur.assezOxygenePourRemonter()==false) {
-			return -1;
-		}
-		else {
-			return 1;
-		}
-		
-		
-		
-		
-		
-	}
-	public double evaluerGainRecuperer() {
-		
+	private Plongeur soiMeme;
+	private Partie partie;
 
-		if(plongeur.assezOxygenePourRemonter()==false) {
-			return -1;
-		}
-		else if(plongeur.assezOxygenePourRemonterPlus()==true)
-			return score.getCoffresPour(plongeur)*coffre.getIdCaveCoffre();
-		else {
-		
-			return 0;
-		}
-		
-	}
 
 	@Override
-	public String prochaineAction() {
-		
-		double monter = this.evaluerGainMonter();
-		double descendre = this.evaluerGainDescendre();
-		double recuperer = this.evaluerGainRecuperer();
+	public String prochaineAction(Partie partie, Plongeur soiMeme) {
+		this.soiMeme = soiMeme;
+		this.partie = partie;
+		int oxygeneRestant = partie.getPhase().getOxygeneRestant();
+		if(!soiMeme.estDansLEau()) {
+		    if(oxygeneRestant <=3)
+		        return Input.actionRecuperer;
+		    return Input.actionDescendre;
+        }
 
-		if(descendre >= monter && descendre >= recuperer) {
-			return this.actionDescendre;
-		}
-		if(monter >= descendre && monter >= recuperer) {
-			return this.actionMonter;
-		}
-		if(recuperer >= monter && recuperer >= descendre) {
-			return this.actionMonter;
-		}
-		
-		return this.actionMonter;
+        Cave caveActuelle = partie.getCaves().get(soiMeme.getProfondeur());
+
+        int totalMontee = 0;
+        for(Plongeur plongeur : partie.getPlongeurs())
+            totalMontee += getTotalNiveaux(plongeur)*(1+plongeur.getNbCoffresSurSoi());
+
+        if( totalMontee >= oxygeneRestant )
+            return Input.actionMonter;
+
+		if(caveActuelle.getNbCoffres(soiMeme.getNiveau()) >= 1)
+		    return Input.actionRecuperer;
+
+		return Input.actionDescendre;
 	}
-	*/
+
+    private int getTotalNiveaux(Plongeur plongeur) {
+        int totalNiveaux= 0;
+        for(int profondeur = 0; profondeur <= plongeur.getProfondeur(); profondeur++) {
+            totalNiveaux += partie.getCaves().get(profondeur).getNbNiveaux();
+        }
+        return totalNiveaux + plongeur.getNiveau();
+    }
 
 }

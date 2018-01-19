@@ -40,7 +40,7 @@ public class Plongeur {
         PartieDessinateur.dessiner();
         boolean aFaitAction;
         do {
-            String action = input.prochaineAction(partie);
+            String action = input.prochaineAction(partie, this);
             if (action == Input.actionMonter)
                 aFaitAction = monter();
             else if (action == Input.actionDescendre)
@@ -97,8 +97,8 @@ public class Plongeur {
 
 
     private boolean recupererCoffre() {
-        if (estDansLEau())
-            return false;
+        if (!estDansLEau())
+            return true; // on reste sur place et on ne consomme pas doxygene
 
         try {
             coffresSurSoi.add(getCave().prendreCoffre(niveauActuel));

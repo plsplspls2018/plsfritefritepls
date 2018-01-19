@@ -3,6 +3,7 @@ package snorkunking.input;
 
 import snorkunking.graphique.StdDraw;
 import snorkunking.moteurjeu.Partie;
+import snorkunking.moteurjeu.Plongeur;
 
 public class InputJoueur extends Input {
 	
@@ -14,7 +15,7 @@ public class InputJoueur extends Input {
 
 	
 	@Override
-	public String prochaineAction(Partie partie) {
+	public String prochaineAction(Partie partie, Plongeur soiMeme) {
 
 	    while(true) {
             while(!StdDraw.hasNextKeyTyped()) {
