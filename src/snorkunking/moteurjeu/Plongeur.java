@@ -37,7 +37,7 @@ public class Plongeur {
 
     public void jouer() {
 
-        PartieDessinateur.dessiner();
+        PartieDessinateur.dessiner(this);
         boolean aFaitAction;
         do {
             String action = input.prochaineAction(partie, this);
@@ -79,7 +79,8 @@ public class Plongeur {
     }
 
     private boolean descendre() {
-        if (partie.getCaves().size() -1 == profondeurActuelle)
+        if (partie.getCaves().size() -1 == profondeurActuelle
+                && getCave().getNbNiveaux()-1 == niveauActuel )
             return false;
 
         //descend d'une cave

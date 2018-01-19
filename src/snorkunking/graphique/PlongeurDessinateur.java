@@ -28,6 +28,8 @@ public class PlongeurDessinateur {
         StdDraw.picture(x, y, "image/"+plongeur.getNom() + ".png", PLONGEUR_LARGEUR, PLONGEUR_HAUTEUR);
         StdDraw.text(x, 270, "Score "+plongeur.getNom()+": "+plongeur.getNombreTresors());
         StdDraw.text(x, 280, "Nb tresors "+plongeur.getNom()+": "+plongeur.getNbCoffresSurSoi());
+        if(plongeur.getNom().equals(PartieDessinateur.plongeurActuel.getNom()))
+            StdDraw.text(x, 290, "A Votre Tour!");
     }
 
 }

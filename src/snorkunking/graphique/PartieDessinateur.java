@@ -7,9 +7,10 @@ import snorkunking.moteurjeu.Plongeur;
 public class PartieDessinateur {
 
     public static Partie partieEnCours;
+    public static Plongeur plongeurActuel;
 
-    public static void dessiner() {
-
+    public static void dessiner(Plongeur plongeurActuel) {
+        PartieDessinateur.plongeurActuel = plongeurActuel;
         StdDraw.clear();
 
         for (int profondeur = 0; profondeur < partieEnCours.getCaves().size(); profondeur++)
