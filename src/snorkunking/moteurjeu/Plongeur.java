@@ -45,7 +45,7 @@ public class Plongeur {
                 aFaitAction = monter();
             else if (action == Input.actionDescendre)
                 aFaitAction = descendre();
-            else if (action == Input.actionDescendre)
+            else if (action == Input.actionRecuperer)
                 aFaitAction = recupererCoffre();
             else
                 throw new RuntimeException("Action invalide: " + action);
@@ -83,7 +83,7 @@ public class Plongeur {
             return false;
 
         //descend d'une cave
-        if (estDansLEau() || getCave().getNbNiveaux() == niveauActuel - 1) {
+        if (!estDansLEau() || getCave().getNbNiveaux() == niveauActuel - 1) {
             profondeurActuelle++;
             niveauActuel = 0;
         } else {

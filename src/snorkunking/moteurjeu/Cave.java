@@ -26,7 +26,7 @@ public class Cave {
 
         coffresParNiveau = new ArrayList<>(nbNiveaux);
         for (int niveau = 0; niveau < nbNiveaux; niveau++)
-            coffresParNiveau.add(new ArrayList<>(Collections.singletonList(new Coffre(niveau))));
+            coffresParNiveau.add(new ArrayList<>(Collections.singletonList(new Coffre(profondeur))));
 
 
     }

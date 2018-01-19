@@ -19,38 +19,33 @@ public class PartieDessinateur {
         for (Plongeur plongeur : partieEnCours.getPlongeurs())
             dessinerPlongeur(plongeur);
 
+        StdDraw.show();
     }
 
 
     private static void dessinerPlongeur(Plongeur plongeur) {
 
-        plongeur.getNombreTresors(); //score a afficher, eventuellement a cote du nom
-        plongeur.getNom();
-
-        if(!plongeur.estDansLEau()) {
-            //affiche le plongeur hors de l'eau
-        } else {
-            //afficher image du plongeur en se servant de sa position
-            plongeur.getNiveau();
-            plongeur.getProfondeur();
-
-            //afficher le nombre de coffres actuellement portes
-            plongeur.getNbCoffresSurSoi();
-        }
+        PlongeurDessinateur.dessinerSprite(plongeur);
 
     }
 
     private static void dessinerOxygene(int oxygeneRestant) {
-        //oxygeneRestant a afficher
+        StdDraw.text(0,350, "Oxygene restant: "+oxygeneRestant);
     }
 
     private static void dessinerCave(Cave cave, int profondeur) {
-        //affiche le fond caveX.png, avec X = profondeur
+        CaveDessinateur.dessinerSprite(profondeur);
 
+        double y = CaveDessinateur.YCave(profondeur) + CaveDessinateur.HauteurCave(profondeur);
         for (int niveau = 0; niveau < cave.getNbNiveaux(); niveau++) { // (pour chaque niveau)
-            cave.getNbCoffres(niveau); // afficher autant de coffres que ce numero sur ce niveau
 
-            //afficher la ligne de separation de ce niveau
+            StdDraw.rectangle(0, CaveDessinateur.HauteurNiveau(profondeur)/2 + y,FenetreDessinateur.LARGEUR/2, CaveDessinateur.HauteurCave(profondeur)/2);
+            y += CaveDessinateur.HauteurNiveau(profondeur);
+
+            for(int i=0; i<cave.getNbCoffres(niveau); i++) {
+                StdDraw.picture(i*CoffreDessinateur.COFFRE_LARGEUR, y, "image/coffre.png", CoffreDessinateur.COFFRE_LARGEUR, CoffreDessinateur.COFFRE_HAUTEUR);
+            }
+
         }
 
     }
