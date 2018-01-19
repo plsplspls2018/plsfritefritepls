@@ -58,5 +58,9 @@ public class Cave {
         });
     }
 
+    public int getNbCoffres(int niveau) {
+        return coffresParNiveau.get(niveau).size();
+    }
+
 
 }

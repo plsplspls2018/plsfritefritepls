@@ -124,15 +124,18 @@ public class Plongeur {
         return nombreTresors;
     }
 
-    public boolean estPlusProfondQue(Plongeur autre) {
-        if (this.profondeurActuelle == autre.profondeurActuelle) {
-            if (this.niveauActuel == autre.niveauActuel)
-                return this.nom.compareTo(autre.nom) > 0;
-            return this.niveauActuel > autre.niveauActuel;
-        }
-
-        return this.profondeurActuelle > autre.profondeurActuelle;
+    public int getNiveau() {
+        return niveauActuel;
     }
+
+    public int getProfondeur() {
+        return profondeurActuelle;
+    }
+
+    public int getNbCoffresSurSoi() {
+        return coffresSurSoi.size();
+    }
+
 
     public String getNom() {
         return nom;
@@ -140,40 +143,4 @@ public class Plongeur {
 
 
 
-
-
-	/*
-	public int profondeurActuelle() {
-		int profondeur=0;
-		for (int i=0;i<this.idCaveActuelle;i++) {
-			profondeur= profondeur + caves.get(i).getNbNiveaux();
-		}
-		profondeur = profondeur + this.profondeurPropreCaveActuelle;
-		
-		return profondeur;
-			
-	}
-	public boolean assezOxygenePourRemonter() {
-		if (bouteille.getRestant()>=((profondeurActuelle() )* (scoreCommun.getCoffresPour(this)+1)))  {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	public boolean assezOxygenePourRemonterPlus() {
-		if (bouteille.getRestant()>=((profondeurActuelle() )* (scoreCommun.getCoffresPour(this)+2)))  {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	public boolean estACaveProfondeur(int idCave, int profondeurPourCave) {
-		if(this.idCaveActuelle == idCave && this.profondeurPropreCaveActuelle == profondeurPourCave) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	*/
 }
