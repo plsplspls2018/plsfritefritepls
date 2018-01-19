@@ -19,7 +19,7 @@ public class InputJoueur extends Input {
 
 	    while(true) {
             while(!StdDraw.hasNextKeyTyped()) {
-                StdDraw.pause(20); //CHECK
+                StdDraw.pause(1);
             }
             char touchePressee = StdDraw.nextKeyTyped();
 

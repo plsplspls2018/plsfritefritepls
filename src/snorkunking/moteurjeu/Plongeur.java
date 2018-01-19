@@ -49,7 +49,7 @@ public class Plongeur {
                 aFaitAction = recupererCoffre();
             else
                 throw new RuntimeException("Action invalide: " + action);
-        } while (aFaitAction);
+        } while (!aFaitAction);
     }
 
 
